@@ -1,0 +1,91 @@
+{
+  "name": "next-graph",
+  "version": "0.1.0",
+  "description": "Zero-dependency architecture & rendering analyzer for the Next.js App Router — CLI tree + local web map.",
+  "type": "module",
+  "license": "MIT",
+  "author": "slxca",
+  "homepage": "https://github.com/slxca/next-graph#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slxca/next-graph.git"
+  },
+  "bugs": {
+    "url": "https://github.com/slxca/next-graph/issues"
+  },
+  "funding": "https://github.com/sponsors/slxca",
+  "keywords": [
+    "nextjs",
+    "next.js",
+    "app-router",
+    "route",
+    "routing",
+    "architecture",
+    "cli",
+    "visualization",
+    "typescript",
+    "developer-tools",
+    "static-analysis"
+  ],
+  "packageManager": "pnpm@9.15.9",
+  "engines": {
+    "node": ">=18.17.0"
+  },
+  "files": ["dist/**", "README.md", "LICENSE", "CHANGELOG.md"],
+  "sideEffects": false,
+  "main": "./dist/server.cjs",
+  "module": "./dist/server.js",
+  "types": "./dist/server.d.ts",
+  "bin": {
+    "next-graph": "./dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/server.d.ts",
+      "import": "./dist/server.js",
+      "require": "./dist/server.cjs",
+      "default": "./dist/server.js"
+    },
+    "./server": {
+      "types": "./dist/server.d.ts",
+      "import": "./dist/server.js",
+      "require": "./dist/server.cjs",
+      "default": "./dist/server.js"
+    },
+    "./core": {
+      "types": "./dist/core.d.ts",
+      "import": "./dist/core.js",
+      "require": "./dist/core.cjs",
+      "default": "./dist/core.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "dependencies": {
+    "picocolors": "^1.1.1"
+  },
+  "peerDependencies": {
+    "next": ">=13.4.0",
+    "typescript": ">=5.0.0"
+  },
+  "peerDependenciesMeta": {
+    "next": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@types/node": "^22.10.5",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.3"
+  },
+  "scripts": {
+    "clean": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\"",
+    "build": "pnpm run clean && tsup",
+    "dev": "tsup --watch",
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "format": "biome format --write .",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "pnpm run build"
+  }
+}
